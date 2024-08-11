@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqvef4s8ulnq2"]
+
+[ext_resource type="Script" path="res://ColorRect.cs" id="1_eihsi"]
+
+[node name="ColorRect" type="ColorRect"]
+offset_left = 451.0
+offset_top = 34.0
+offset_right = 583.0
+offset_bottom = 158.0
+script = ExtResource("1_eihsi")

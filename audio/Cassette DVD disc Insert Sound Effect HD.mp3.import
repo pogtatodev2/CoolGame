@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cw120yb6jiuk"
+path="res://.godot/imported/Cassette DVD disc Insert Sound Effect HD.mp3-e66d91f0c048de9ab02017429853be00.mp3str"
+
+[deps]
+
+source_file="res://audio/Cassette DVD disc Insert Sound Effect HD.mp3"
+dest_files=["res://.godot/imported/Cassette DVD disc Insert Sound Effect HD.mp3-e66d91f0c048de9ab02017429853be00.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://2d36tvhop52p"]
+
+[ext_resource type="FontFile" uid="uid://skvi8dn13g5f" path="res://other/VCR_OSD_MONO_1.001.ttf" id="1_pe8d8"]
+[ext_resource type="Texture2D" uid="uid://bm6vclrpofmf2" path="res://sprites/fireballIcon.png" id="2_apprx"]
+[ext_resource type="Texture2D" uid="uid://dfbkhhepxgdt7" path="res://sprites/thunderIcon.png" id="3_f11ap"]
+
+[node name="spellWheel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="ItemList" parent="."]
+z_index = 4096
+texture_filter = 1
+layout_mode = 0
+offset_right = 1438.0
+offset_bottom = 790.0
+pivot_offset = Vector2(1110, -3)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_pe8d8")
+theme_override_font_sizes/font_size = 30
+allow_reselect = true
+allow_search = false
+item_count = 2
+fixed_column_width = 3
+fixed_icon_size = Vector2i(100, 100)
+item_0/text = "FIREBALL"
+item_0/icon = ExtResource("2_apprx")
+item_1/text = "THUNDER"
+item_1/icon = ExtResource("3_f11ap")
+item_1/disabled = true

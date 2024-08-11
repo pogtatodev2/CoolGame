@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7oeytatmfjfw"]
+
+[ext_resource type="Script" path="res://scenes/enemy_base.gd" id="1_vjth3"]
+[ext_resource type="Texture2D" uid="uid://dhvjsnvidlhf1" path="res://sprites/enemies/tank.png" id="2_egwsh"]
+
+[node name="tank" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_vjth3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_egwsh")
+offset = Vector2(16, 16)
+metadata/_edit_lock_ = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(2, 12)
+scale = Vector2(3, 1)
+target_position = Vector2(0, 20)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(17.3333, 8)
+target_position = Vector2(16.6667, 0)
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+position = Vector2(14.6667, 30.6667)
+target_position = Vector2(-15, 0)
+
+[node name="RayCast2D4" type="RayCast2D" parent="."]
+position = Vector2(30, 11.3333)
+scale = Vector2(3, 1)
+target_position = Vector2(0, 20)
+
+[node name="RayCast2D5" type="RayCast2D" parent="."]
+position = Vector2(18, 30.6667)
+target_position = Vector2(16.6667, 0)
+
+[node name="RayCast2D6" type="RayCast2D" parent="."]
+position = Vector2(13.3333, 8)
+target_position = Vector2(-15, 0)

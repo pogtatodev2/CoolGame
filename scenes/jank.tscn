@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://un2qftg46120"]
+
+[ext_resource type="Script" path="res://scenes/jank.cs" id="1_6d30j"]
+[ext_resource type="Texture2D" uid="uid://cg5onqjxrf5qd" path="res://sprites/enemies/jank.png" id="2_aeief"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2www7"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mu8ix"]
+size = Vector2(42.6667, 0.833333)
+
+[node name="jank" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_6d30j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_aeief")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2www7")
+
+[node name="RightDownRaycast" type="RayCast2D" parent="."]
+position = Vector2(0, 15)
+target_position = Vector2(18, 0)
+
+[node name="LeftDownRayCast" type="RayCast2D" parent="."]
+position = Vector2(0, 15)
+target_position = Vector2(-18, 0)
+
+[node name="RightUpRaycast2" type="RayCast2D" parent="."]
+position = Vector2(0, -15)
+target_position = Vector2(18, 0)
+
+[node name="LeftUpRayCast2" type="RayCast2D" parent="."]
+position = Vector2(0, -15)
+target_position = Vector2(-18, 0)
+
+[node name="Beam" type="ColorRect" parent="."]
+visible = false
+offset_left = -53.0
+offset_top = -15.0
+offset_right = -10.0
+offset_bottom = -14.0
+color = Color(1, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="Beam"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Beam/Area2D"]
+position = Vector2(21.6667, 0.583333)
+shape = SubResource("RectangleShape2D_mu8ix")
+
+[node name="BeamTimer" type="Timer" parent="."]
+wait_time = 0.001
+
+[connection signal="area_entered" from="Beam/Area2D" to="." method="OnArea2DEntered"]
+[connection signal="area_entered" from="Beam/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="BeamTimer" to="Beam" method="_on_beam_timer_timeout"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx6ht458hue27"]
+
+[ext_resource type="FontFile" uid="uid://skvi8dn13g5f" path="res://other/VCR_OSD_MONO_1.001.ttf" id="1_lkhth"]
+[ext_resource type="Script" path="res://scenes/staminaBar.gd" id="1_u07ua"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q5lii"]
+bg_color = Color(0.905882, 0.960784, 1, 0.309804)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g0cnq"]
+bg_color = Color(9.14484e-07, 0.721353, 0.307087, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 23.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="staminaBar" type="ProgressBar" parent="."]
+texture_filter = 6
+layout_mode = 0
+offset_left = -493.0
+offset_right = -445.0
+offset_bottom = 228.0
+scale = Vector2(1.35, 1.35)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = -8019
+theme_override_fonts/font = ExtResource("1_lkhth")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/background = SubResource("StyleBoxFlat_q5lii")
+theme_override_styles/fill = SubResource("StyleBoxFlat_g0cnq")
+rounded = true
+allow_greater = true
+fill_mode = 3
+script = ExtResource("1_u07ua")

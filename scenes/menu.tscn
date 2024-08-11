@@ -1,0 +1,132 @@
+[gd_scene load_steps=12 format=3 uid="uid://cw3mhivaeo4hn"]
+
+[ext_resource type="Texture2D" uid="uid://drjt6jjx83jdi" path="res://sprites/PGTLogo.png" id="1_lgn80"]
+[ext_resource type="Script" path="res://scenes/menu.gd" id="1_s8j30"]
+[ext_resource type="Texture2D" uid="uid://cb0jvc5c5bfrc" path="res://sprites/pzgsubtitle.png" id="2_fhitl"]
+[ext_resource type="Theme" uid="uid://b23goh8dhwvho" path="res://other/mainTerminalGUI.tres" id="3_1vyxd"]
+[ext_resource type="AudioStream" uid="uid://cw120yb6jiuk" path="res://audio/Cassette DVD disc Insert Sound Effect HD.mp3" id="5_4rc0y"]
+[ext_resource type="PackedScene" uid="uid://ctwvtep5y14ps" path="res://scenes/throbber.tscn" id="6_d8inu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mpf6h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yk7wt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fei0l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prye8"]
+bg_color = Color(0.69246, 1.92523e-06, 2.88785e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwfti"]
+bg_color = Color(0.694118, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s8j30")
+
+[node name="subtitle" type="Label" parent="."]
+z_index = 10
+layout_mode = 0
+offset_top = 292.0
+offset_right = 920.0
+offset_bottom = 747.0
+theme = ExtResource("3_1vyxd")
+text = "insert disc:"
+
+[node name="pGT" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_lgn80")
+centered = false
+
+[node name="Pzgsubtitle" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(770.875, 61.625)
+scale = Vector2(0.455619, 0.553317)
+texture = ExtResource("2_fhitl")
+
+[node name="bg" type="ColorRect" parent="."]
+z_index = -1000
+texture_filter = 1
+layout_mode = 0
+offset_left = -79.0
+offset_top = -75.0
+offset_right = 1201.0
+offset_bottom = 741.0
+theme = ExtResource("3_1vyxd")
+color = Color(0.101961, 0.105882, 0.14902, 1)
+
+[node name="actSelect" type="ItemList" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 496.0
+offset_top = 288.0
+offset_right = 1024.0
+offset_bottom = 640.0
+tooltip_text = "how the hell do i disable this"
+theme = ExtResource("3_1vyxd")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mpf6h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yk7wt")
+theme_override_styles/hovered = SubResource("StyleBoxEmpty_fei0l")
+theme_override_styles/selected = SubResource("StyleBoxFlat_prye8")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_gwfti")
+item_count = 3
+item_0/text = "act 1"
+item_1/text = "act 2"
+item_2/text = "act 3"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="actSelect"]
+position = Vector2(-512, -288)
+stream = ExtResource("5_4rc0y")
+
+[node name="loading" type="Timer" parent="actSelect"]
+wait_time = 1.75
+
+[node name="levelSelect" type="ItemList" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 512.0
+offset_top = 288.0
+offset_right = 1040.0
+offset_bottom = 640.0
+tooltip_text = "how the hell do i disable this"
+theme = ExtResource("3_1vyxd")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mpf6h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yk7wt")
+theme_override_styles/hovered = SubResource("StyleBoxEmpty_fei0l")
+theme_override_styles/selected = SubResource("StyleBoxFlat_prye8")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_gwfti")
+item_count = 3
+item_0/text = "level 1"
+item_1/text = "level 2"
+item_2/text = "level 3"
+
+[node name="throbber" parent="." instance=ExtResource("6_d8inu")]
+visible = false
+texture_filter = 1
+layout_mode = 1
+offset_left = 488.0
+offset_top = 293.0
+offset_right = -40.0
+offset_bottom = -59.0
+theme = ExtResource("3_1vyxd")
+
+[node name="loadingText" type="Label" parent="throbber"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 40.0
+offset_top = -1.0
+offset_right = 400.0
+offset_bottom = 59.0
+text = "loading.."
+
+[connection signal="item_selected" from="actSelect" to="." method="_on_act_select_item_selected"]
+[connection signal="finished" from="actSelect/AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="timeout" from="actSelect/loading" to="." method="_on_loading_timeout"]

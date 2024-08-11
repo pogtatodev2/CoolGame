@@ -1,0 +1,104 @@
+[gd_scene load_steps=16 format=3 uid="uid://bigqxy0bvtaw6"]
+
+[ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_j8fd4"]
+[ext_resource type="Texture2D" uid="uid://2qw8lg2bfr4a" path="res://sprites/player/animationSprites/walkCycle1.png" id="2_ah75f"]
+[ext_resource type="Texture2D" uid="uid://cndte6a080wfe" path="res://sprites/player/animationSprites/walkCycle2.png" id="3_m37gg"]
+[ext_resource type="Texture2D" uid="uid://domptgd62f2h6" path="res://sprites/player/animationSprites/walkCycle3.png" id="4_28kan"]
+[ext_resource type="Texture2D" uid="uid://b2oj6swyej4wv" path="res://sprites/player/animationSprites/idle1.png" id="5_r7csn"]
+[ext_resource type="Texture2D" uid="uid://bwry5vokp34rx" path="res://sprites/player/animationSprites/idle2.png" id="6_0f7i0"]
+[ext_resource type="Texture2D" uid="uid://bdnbu8mjre0uc" path="res://sprites/player/animationSprites/falling1.png" id="7_n12w3"]
+[ext_resource type="Texture2D" uid="uid://cf610x3d14sbc" path="res://sprites/player/animationSprites/falling2.png" id="8_dn6f3"]
+[ext_resource type="FontFile" uid="uid://skvi8dn13g5f" path="res://other/VCR_OSD_MONO_1.001.ttf" id="9_aimyn"]
+[ext_resource type="Script" path="res://scenes/jumpCounter.gd" id="9_l3xiq"]
+[ext_resource type="Script" path="res://scenes/playerVars.gd" id="10_0ffbx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l7nfo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ah75f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m37gg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_28kan")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3m7aw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_r7csn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0f7i0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_keg04"]
+size = Vector2(24, 57)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_udnny"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_n12w3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_dn6f3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="PlayerChar" type="CharacterBody2D"]
+script = ExtResource("1_j8fd4")
+metadata/_edit_group_ = true
+
+[node name="walkAnim" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(12.5, 29)
+sprite_frames = SubResource("SpriteFrames_l7nfo")
+
+[node name="idleAnim" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(12.5, 29)
+sprite_frames = SubResource("SpriteFrames_3m7aw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(12, 29.5)
+shape = SubResource("RectangleShape2D_keg04")
+
+[node name="fallingAnim" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(12, 29)
+sprite_frames = SubResource("SpriteFrames_udnny")
+
+[node name="jumptext" type="RichTextLabel" parent="."]
+z_index = 7
+texture_filter = 1
+offset_left = 25.0
+offset_right = 418.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("9_aimyn")
+theme_override_font_sizes/normal_font_size = 18
+text = "JUMPS LEFT: "
+script = ExtResource("9_l3xiq")
+
+[node name="PlayerVars" type="Node" parent="."]
+script = ExtResource("10_0ffbx")
+
+[node name="dashTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.01
+
+[connection signal="timeout" from="dashTimer" to="." method="_on_dash_timer_timeout"]

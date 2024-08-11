@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://ci8r54fmoejfu"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_hdy00"]
+[ext_resource type="Texture2D" uid="uid://b2oj6swyej4wv" path="res://sprites/player/animationSprites/idle1.png" id="2_loxc1"]
+[ext_resource type="Texture2D" uid="uid://bwry5vokp34rx" path="res://sprites/player/animationSprites/idle2.png" id="3_xk5e8"]
+[ext_resource type="Texture2D" uid="uid://2qw8lg2bfr4a" path="res://sprites/player/animationSprites/walkCycle1.png" id="4_0tj5y"]
+[ext_resource type="Texture2D" uid="uid://cndte6a080wfe" path="res://sprites/player/animationSprites/walkCycle2.png" id="5_qch10"]
+[ext_resource type="Texture2D" uid="uid://domptgd62f2h6" path="res://sprites/player/animationSprites/walkCycle3.png" id="6_a1ouc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3yrpt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_loxc1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xk5e8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrcma"]
+size = Vector2(50.5, 110)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o8dcm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0tj5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qch10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_a1ouc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="Area2D"]
+position = Vector2(13, 28)
+script = ExtResource("1_hdy00")
+speed = 350
+
+[node name="idleAnim" type="AnimatedSprite2D" parent="."]
+position = Vector2(14, 28)
+scale = Vector2(2.158, 1.931)
+sprite_frames = SubResource("SpriteFrames_3yrpt")
+frame_progress = 0.504673
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(13.75, 29)
+shape = SubResource("RectangleShape2D_lrcma")
+
+[node name="walkAnim" type="AnimatedSprite2D" parent="."]
+position = Vector2(14, 28)
+scale = Vector2(2.1585, 1.93103)
+sprite_frames = SubResource("SpriteFrames_o8dcm")
